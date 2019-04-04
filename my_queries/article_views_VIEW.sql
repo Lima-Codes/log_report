@@ -14,4 +14,5 @@ WHERE
 GROUP BY
     article
 ORDER BY
-    nb_views DESC
+    nb_views DESC;
+
