@@ -29,7 +29,24 @@ The program generates 3 reports answering the following questions:
     Example:  
     + July 29, 2016 — 2.5% errors
 
-## Views used
+## Usage
+To get this program up and running, you will need to do the following:
+
+
+### Install Vagrant
+Vagrant is the software that configures the VM and lets you share files between your host computer and the VM's filesystem. [Download it from vagrantup.com](https://www.vagrantup.com/downloads.html). Install the version for your operating system.
+
+### Download the VM configuration
+There are a couple of different ways you can download the VM configuration.
+
+You can download and unzip this file: [FSND-Virtual-Machine.zip](https://s3.amazonaws.com/video.udacity-data.com/topher/2018/April/5acfbfa3_fsnd-virtual-machine/fsnd-virtual-machine.zip) This will give you a directory called FSND-Virtual-Machine. It may be located inside your Downloads folder.
+
+### Start the virtual machine
+From your terminal, inside the vagrant subdirectory, run the command `vagrant up`. This will cause Vagrant to download the Linux operating system and install it. This may take quite a while (many minutes) depending on how fast your Internet connection is.
+
+When `vagrant up` is finished running, you will get your shell prompt back. At this point, you can run `vagrant ssh` to log in to your newly installed Linux VM.
+
+## Views
 The following views were created and are used for easier SQL queries:
 
 1. **article_views**
@@ -61,5 +78,34 @@ SELECT
 FROM
     articles
     JOIN authors ON articles.author = authors.id;`
+
+3. **daily_error_rate**
+
+`CREATE VIEW daily_error_rate AS
+SELECT
+    *,
+    (
+        b.nb_errors * 100.0 / a.nb_requests)::float AS error_rate
+FROM (
+    SELECT
+        time::date AS day,
+        count(status) AS nb_requests
+    FROM
+        log
+    GROUP BY
+        time::date) a
+    JOIN (
+        SELECT
+            time::date AS day_2,
+            count(status) AS nb_errors
+        FROM
+            log
+        WHERE
+            status LIKE '%404%'
+        GROUP BY
+            time::date) b ON a.day = b.day_2
+ORDER BY
+    a.day DESC;
+`
 
 
