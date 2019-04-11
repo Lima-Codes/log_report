@@ -51,7 +51,7 @@ The following views were created and are used for easier SQL queries:
 
 1. **article_views**
 
-`CREATE VIEW article_views AS
+~~~~CREATE VIEW article_views AS
 SELECT
     split_part(
         path, '/', 3) AS article,
@@ -67,21 +67,23 @@ WHERE
 GROUP BY
     article
 ORDER BY
-    nb_views DESC;`
+    nb_views DESC;
+~~~~
 
 2. **authors_articles**
 
-`CREATE VIEW authors_articles AS
+~~~~CREATE VIEW authors_articles AS
 SELECT
     authors.name,
     articles.slug
 FROM
     articles
-    JOIN authors ON articles.author = authors.id;`
+    JOIN authors ON articles.author = authors.id;
+~~~~
 
 3. **daily_error_rate**
 
-`CREATE VIEW daily_error_rate AS
+~~~~CREATE VIEW daily_error_rate AS
 SELECT
     *,
     (
@@ -106,6 +108,6 @@ FROM (
             time::date) b ON a.day = b.day_2
 ORDER BY
     a.day DESC;
-`
+~~~~
 
 
