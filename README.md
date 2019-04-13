@@ -1,11 +1,11 @@
 # Log Analysis Project
-This Python program is a reporting tool that prints out reports (in plain text) based on  data in the 'news' database. It uses the psycopg2 module to connect to the database.  
+This Python program is a reporting tool that prints out reports (in plain text) based on data in the 'news' database. It uses the psycopg2 module to connect to the database.  
 
 * * *
 
 ## Program Output
 
-The program generates 3 reports answering the following questions:
+This project sets up a mock PostgreSQL database for a fictional news website. The provided Python script uses the psycopg2 library to query the database and produce a report that answers the following three questions:
 
 1. **What are the most popular three articles of all time?** Which articles have been accessed the most? Presented as a sorted list with the most popular article at the top.
 
