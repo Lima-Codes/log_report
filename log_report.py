@@ -20,7 +20,8 @@ most_popular_authors_query = """
 
 error_day_query = """
                   SELECT day, round(error_rate::numeric, 1) 
-                  FROM daily_error_rate where error_rate > 1.0 
+                  FROM daily_error_rate 
+                  WHERE error_rate > 1.0 
                   ORDER BY error_rate desc;
                   """
 
