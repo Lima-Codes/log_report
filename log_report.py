@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 
-import datetime
 import psycopg2
 
 DBNAME = "news"
@@ -27,7 +26,7 @@ error_day_query = """
 
 
 def get_data(query):
-    """Executes SQL query and returns results in a list of tuples."""
+    """Execute SQL query and return results in a list of tuples."""
     conn = psycopg2.connect(database=DBNAME)
     cursor = conn.cursor()
     cursor.execute(query)
