@@ -46,6 +46,12 @@ From your terminal, inside the vagrant subdirectory, run the command `vagrant up
 
 When `vagrant up` is finished running, you will get your shell prompt back. At this point, you can run `vagrant ssh` to log in to your newly installed Linux VM.
 
+### Create views
+In your vagrant VM, change directory using `cd /vagrant` then run the command `psql`. Create the views using the SQL statements in the [Views](#views) section.
+
+### Run the program
+In your vagrant VM, run `python log_report.py` to generate the report.
+
 ## Views
 The following views were created and are used for easier SQL queries:
 
