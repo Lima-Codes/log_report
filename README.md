@@ -51,7 +51,8 @@ The following views were created and are used for easier SQL queries:
 
 1. **article_views**
 
-~~~~CREATE VIEW article_views AS
+~~~~sql
+CREATE VIEW article_views AS
 SELECT
     split_part(
         path, '/', 3) AS article,
@@ -72,7 +73,8 @@ ORDER BY
 
 2. **authors_articles**
 
-~~~~CREATE VIEW authors_articles AS
+~~~~sql
+CREATE VIEW authors_articles AS
 SELECT
     authors.name,
     articles.slug
@@ -83,7 +85,8 @@ FROM
 
 3. **daily_error_rate**
 
-~~~~CREATE VIEW daily_error_rate AS
+~~~~sql
+CREATE VIEW daily_error_rate AS
 SELECT
     *,
     (
