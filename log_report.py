@@ -5,17 +5,24 @@ import psycopg2
 
 DBNAME = "news"
 
-top_3_articles_query = """select articles.title, article_views.nb_views
- from articles join article_views on articles.slug = article_views.article
- order by article_views.nb_views desc
- limit 3;"""
+top_3_articles_query = """
+                       SELECT articles.title, article_views.nb_views 
+                       FROM articles join article_views on articles.slug = article_views.article 
+                       ORDER BY article_views.nb_views desc 
+                       LIMIT 3;
+                       """
 
-most_popular_authors_query = """select name, sum(nb_views)::bigint as total_views
-  from article_views a join authors_articles b on a.article=b.slug
-   group by name order by total_views desc;"""
+most_popular_authors_query = """
+                             SELECT name, sum(nb_views)::bigint as total_views 
+                             FROM article_views a join authors_articles b on a.article=b.slug 
+                             GROUP BY name order by total_views desc;
+                             """
 
-error_day_query = """select day, round(error_rate::numeric, 1)
- from daily_error_rate where error_rate > 1.0 order by error_rate desc;"""
+error_day_query = """
+                  SELECT day, round(error_rate::numeric, 1) 
+                  FROM daily_error_rate where error_rate > 1.0 
+                  ORDER BY error_rate desc;
+                  """
 
 
 def get_data(query):
